@@ -5,14 +5,18 @@ import DbConnection from "./utils/DataBaseConnection.js";
 import dataRouter from "./routes/data.js";
 import verifyToken from "./utils/verify.js";
 import cors from "cors";
+import dotenv from "dotenv";
 
 export const secretKey = "0aaOUOUMp5+ra4j1TYUpQ967jthj0kuKaGgqV/iSvus=";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+dotenv.config();
+
 DbConnection();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001 
+console.log(process.env.PORT)
 
 app.get("/", (req, res) => {
   res.send("Hello World");
